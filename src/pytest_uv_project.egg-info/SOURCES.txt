@@ -1,0 +1,10 @@
+pyproject.toml
+src/__init__.py
+src/calculator/__init__.py
+src/calculator/math_ops.py
+src/pytest_uv_project.egg-info/PKG-INFO
+src/pytest_uv_project.egg-info/SOURCES.txt
+src/pytest_uv_project.egg-info/dependency_links.txt
+src/pytest_uv_project.egg-info/requires.txt
+src/pytest_uv_project.egg-info/top_level.txt
+tests/test_math_ops.py
