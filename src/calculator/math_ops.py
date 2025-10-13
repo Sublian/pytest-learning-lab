@@ -1,3 +1,4 @@
+# math_ops.py
 """Módulo de operaciones matemáticas básicas."""
 
 class MathOperations:

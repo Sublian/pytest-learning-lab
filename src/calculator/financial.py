@@ -1,3 +1,4 @@
+# financial.py
 """Módulo de operaciones financieras."""
 
 import pandas as pd

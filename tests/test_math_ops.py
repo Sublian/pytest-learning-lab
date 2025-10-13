@@ -75,3 +75,10 @@ python -m pytest tests/ --cov=src --cov-report=term-missing
 # Ejecutar solo tests específicos
 python -m pytest tests/test_math_ops.py::test_factorial_valid -v
 """
+
+# tests/test_math_ops.py
+def test_add(math_ops_module):
+    assert math_ops_module.add(2,3) == 5
+
+def test_divide(math_ops_module):
+    assert math_ops_module.divide(10,2) == 5
