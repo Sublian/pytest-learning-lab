@@ -136,6 +136,7 @@ from src.calculator.math_ops import MathOperations
 ])
 def test_add(a, b, resultado):
     assert MathOperations.add(a, b) == resultado
+```
 
 **📘 Reflexión del día**
 Hoy entendí que pytest no solo sirve para validar resultados, sino también para diseñar tests más expresivos y reutilizables.
