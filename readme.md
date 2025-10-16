@@ -111,3 +111,32 @@ def conexion_db():
 Hoy avancé con las *fixtures* en pytest.  
 Aprendí a usar `tmp_path`, `yield` y `scope`, entendiendo cómo ayudan a mantener los tests limpios y seguros.  
 Cada día me resulta más claro cómo pytest puede hacer el proceso de testing más elegante y profesional.
+
+---
+
+## 🧩 Día 4 — Parametrización y Reutilización de Datos en Pytest
+
+> Hoy exploré cómo **pytest** permite ejecutar la misma prueba con múltiples combinaciones de datos sin repetir código, utilizando **parametrización** y **fixtures parametrizadas**.  
+> Este enfoque mejora la cobertura y mantiene las pruebas limpias y reutilizables.
+
+---
+
+### 🔹 Parametrización básica con `@pytest.mark.parametrize`
+
+Permite definir un conjunto de datos para ejecutar el mismo test múltiples veces.
+
+```python
+import pytest
+from src.calculator.math_ops import MathOperations
+
+@pytest.mark.parametrize("a,b,resultado", [
+    (2, 3, 5),
+    (4, 1, 3),
+    (10, -5, 5)
+])
+def test_add(a, b, resultado):
+    assert MathOperations.add(a, b) == resultado
+
+**📘 Reflexión del día**
+Hoy entendí que pytest no solo sirve para validar resultados, sino también para diseñar tests más expresivos y reutilizables.
+Con cada refactor, el testing se siente menos como una tarea extra y más como una herramienta de calidad y aprendizaje continuo.
