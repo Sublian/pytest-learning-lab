@@ -26,6 +26,13 @@ requires = ["setuptools>=45.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
+markers = [
+    "rapidas: pruebas rápidas",
+    "lentas: pruebas con operaciones costosas",
+    "error_handling: validación de manejo de errores",
+    "financial: pruebas de cálculos financieros válidos",
+    "financial_error: validación de errores financieros",
+]
 pythonpath = [
   "src"
 ]

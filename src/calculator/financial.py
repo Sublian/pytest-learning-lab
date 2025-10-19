@@ -13,7 +13,7 @@ class FinancialCalculator:
         """Calcula interés compuesto."""
         if principal < 0 or rate < 0 or time < 0:
             raise ValueError("Los valores no pueden ser negativos")
-        return principal * (1 + rate) ** time
+        return round(principal * (1 + rate) ** time, 2)
     
     @staticmethod
     def calculate_loan_payment(principal: float, annual_rate: float, years: int) -> float:

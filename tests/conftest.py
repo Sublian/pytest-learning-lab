@@ -16,3 +16,9 @@ def limpia_estado_global():
     # setup: por ejemplo, borra variables globales del módulo
     yield
     # teardown: opcional
+    
+@pytest.fixture(scope='session')
+def entorno_global():
+    print("\n🌍 Configurando entorno global de tests")
+    yield
+    print("\n🧹 Limpiando entorno global de tests")

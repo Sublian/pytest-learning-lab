@@ -23,6 +23,24 @@ pytest-uv-project/
 - [uv](https://github.com/astral-sh/uv)
 - GitHub Actions (future integration)
 
+
+
+---
+
+### ⚙️ Inicialización del entorno con UV
+
+```bash
+# Activar el entorno virtual
+uv venv
+
+# Instalar pytest y plugins
+uv pip install pytest pytest-cov pytest-mock
+```
+# Ejecutar los tests completos:
+>uv run pytest -v
+
+# Ejecutar los tests por marcador:
+>uv run pytest -m error_handling -v
 ---
 
 ### 🧭 Status
@@ -141,3 +159,35 @@ def test_add(a, b, resultado):
 **📘 Reflexión del día**
 Hoy entendí que pytest no solo sirve para validar resultados, sino también para diseñar tests más expresivos y reutilizables.
 Con cada refactor, el testing se siente menos como una tarea extra y más como una herramienta de calidad y aprendizaje continuo.
+
+---
+
+## 🧩 Día 5 — Pytest + UV: Parametrización Avanzada y Markers
+
+### 🎯 Objetivos del día
+
+> En este día aprendimos a combinar **fixtures, parametrización y markers personalizados**,  
+> tres pilares para estructurar pruebas profesionales y reutilizables en Python.  
+> Además, exploramos la ejecución selectiva y el manejo de casos de error.
+
+## 🛠️ Solución a los Warnings de Markers 
+### (Agrega tus marcas personalizadas en el archivo pyproject.toml)
+
+``` python
+[tool.pytest.ini_options]
+markers = [
+    "rapidas: pruebas rápidas",
+    "lentas: pruebas con operaciones costosas",
+    "error_handling: validación de manejo de errores"
+]
+```
+
+### 🧭 Resumen rápido
+| Concepto | Qué hace | Cuándo usarlo |
+|-----------|-----------|----------------|
+| @pytest.mark.parametrize | Ejecuta múltiples escenarios con un mismo test | Varias combinaciones de entrada  | 
+| Fixtures combinadas | Reutiliza datos o configuraciones | Escenarios repetitivos | 
+| Markers personalizados | Agrupa y filtra pruebas | Ejecución selectiva (rápidas, lentas, errores) | 
+| conftest.py | Centraliza fixtures globales | Configuración común de tests | 
+
+---
