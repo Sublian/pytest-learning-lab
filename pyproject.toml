@@ -32,6 +32,8 @@ markers = [
     "error_handling: validación de manejo de errores",
     "financial: pruebas de cálculos financieros válidos",
     "financial_error: validación de errores financieros",
+    "mail: pruebas de envío de correo exitoso",
+    "mail_error: validación de errores en correo",
 ]
 pythonpath = [
   "src"

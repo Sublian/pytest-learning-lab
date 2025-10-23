@@ -24,7 +24,6 @@ pytest-uv-project/
 - GitHub Actions (future integration)
 
 
-
 ---
 
 ### ⚙️ Inicialización del entorno con UV
@@ -36,10 +35,10 @@ uv venv
 # Instalar pytest y plugins
 uv pip install pytest pytest-cov pytest-mock
 ```
-# Ejecutar los tests completos:
+## Ejecutar los tests completos:
 >uv run pytest -v
 
-# Ejecutar los tests por marcador:
+## Ejecutar los tests por marcador:
 >uv run pytest -m error_handling -v
 ---
 
@@ -163,7 +162,6 @@ Con cada refactor, el testing se siente menos como una tarea extra y más como u
 ---
 
 ## 🧩 Día 5 — Pytest + UV: Parametrización Avanzada y Markers
-
 ### 🎯 Objetivos del día
 
 > En este día aprendimos a combinar **fixtures, parametrización y markers personalizados**,  
@@ -182,7 +180,7 @@ markers = [
 ]
 ```
 
-### 🧭 Resumen rápido
+### 🧭 Resumen rápido día 5
 | Concepto | Qué hace | Cuándo usarlo |
 |-----------|-----------|----------------|
 | @pytest.mark.parametrize | Ejecuta múltiples escenarios con un mismo test | Varias combinaciones de entrada  | 
