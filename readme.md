@@ -229,6 +229,11 @@ uv pip install requests
 |Parametrización con mocks |	Prueba múltiples escenarios rápidamente |	Mayor cobertura|
 |Combinación con markers |	Clasifica tests por tipo (API, errores, etc.) |	Organización profesional|
 
+## 🧭 Pytest + UV — Mini Guía Visual (Día 6)
+
+> 💡 Esta guía resume los comandos y patrones más útiles de **pytest** cuando se combina con **uv**.  
+> Ideal como referencia rápida durante el desarrollo o debugging de tests.
+
 
 ### 🧭 En resumen
 |Objetivo |	Comando|
