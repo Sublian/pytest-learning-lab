@@ -10,12 +10,13 @@ This lab includes:
 - Code profiling and optimization techniques
 
 ## 📂 Structure
+```bash
 pytest-uv-project/
-│
 ├── src/ # Core code
 ├── tests/ # Unit and integration tests
 └── pyproject.toml # uv project configuration
 
+```
 
 ## 🧰 Tools
 - Python 3.11+
