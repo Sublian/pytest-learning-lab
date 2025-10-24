@@ -13,6 +13,7 @@ src/pytest_uv_project.egg-info/requires.txt
 src/pytest_uv_project.egg-info/top_level.txt
 tests/test_combined_param_fixture.py
 tests/test_financial.py
+tests/test_financial_api_mock.py
 tests/test_financial_io.py
 tests/test_financial_mixed.py
 tests/test_fixture_tmpfile.py

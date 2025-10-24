@@ -189,3 +189,53 @@ markers = [
 | conftest.py | Centraliza fixtures globales | Configuración común de tests | 
 
 ---
+
+
+## 🧩 Día 6 — Pruebas con Mocks: Simulando Dependencias Externas
+### 🎯 Objetivo del Día
+
+>Aprender a aislar el código que depende de servicios externos (APIs, correo, archivos, BD, etc.)
+>utilizando herramientas de mocking que ofrece pytest + unittest.mock.
+>“El mocking no es mentirle al código —
+>es enseñarle a pensar por sí mismo en un entorno controlado,
+>es construir un entorno seguro donde el código puede fallar sin consecuencias.”
+
+---
+### ⚙️ Instalación de dependencias
+
+Antes de ejecutar los ejemplos, instala la librería `requests` en tu entorno virtual manejado por **uv**:
+
+```bash
+# Activar entorno virtual si no está activo
+uv venv
+
+# Instalar requests dentro del entorno
+uv pip install requests
+```
+
+### 🧠 Explicación Detallada del Mock
+|Elemento |	Qué hace |	Ejemplo|
+|-----------|-----------|----------------|
+|@patch("src.calculator.financial.requests.get") |	Sustituye la función real requests.get por un mock temporal |	Evita llamadas reales a internet|
+|MagicMock() |	Crea un objeto flexible que puede simular cualquier atributo o método |	mock_response.json.return_value = {...}|
+|assert_called_once_with() |	Verifica que la función se haya llamado correctamente |	Previene llamadas duplicadas o erróneas|
+|pytest.raises(ConnectionError) |	Comprueba el flujo de error esperado |	Asegura que la app responde correctamente a fallos externos|
+
+### 🧭 Resumen del Día 6 — Parte 2
+| Concepto | Descripción | Beneficio |
+|-----------|-----------|----------------|
+|Mock de requests |	Sustituye llamadas reales a la red |	Tests sin conexión|
+|MagicMock |	Crea objetos con comportamiento controlado |	Simula APIs o archivos|
+|Parametrización con mocks |	Prueba múltiples escenarios rápidamente |	Mayor cobertura|
+|Combinación con markers |	Clasifica tests por tipo (API, errores, etc.) |	Organización profesional|
+
+
+### 🧭 En resumen
+|Objetivo |	Comando|
+|-----------|-----------|
+|Ejecutar todos los tests |	uv run pytest|
+|Ejecutar un archivo |	uv run pytest tests/test_math_ops.py|
+|Ejecutar una función específica |	uv run pytest tests/test_math_ops.py::test_sumatoria_basica|
+|Ejecutar por marker |	uv run pytest -m api|
+|Ejecutar con varios markers |	uv run pytest -m "api or error_handling"|
+|Ejecutar con filtro de nombre |	uv run pytest -k interest|

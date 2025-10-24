@@ -4,6 +4,7 @@
 import pandas as pd
 import numpy as np
 from typing import List
+import requests
 
 class FinancialCalculator:
     """Calculadora para operaciones financieras."""
@@ -38,3 +39,12 @@ class FinancialCalculator:
         
         payment = (principal * monthly_rate) / (1 - (1 + monthly_rate) ** -num_payments)
         return round(payment, 2)
+    
+    @staticmethod
+    def get_remote_interest_rate(api_url: str) -> float:
+        """Obtiene la tasa de interés desde una API externa."""
+        response = requests.get(api_url, timeout=5)
+        if response.status_code != 200:
+            raise ConnectionError("No se pudo obtener la tasa remota")
+        data = response.json()
+        return float(data.get("rate", 0.0))
