@@ -27,3 +27,7 @@ Thumbs.db
 *.log
 *.bak
 *.tmp
+
+# carpetas
+src/lab
+PyWhatKit_DB.txt

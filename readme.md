@@ -245,3 +245,41 @@ uv pip install requests
 |Ejecutar por marker |	uv run pytest -m api|
 |Ejecutar con varios markers |	uv run pytest -m "api or error_handling"|
 |Ejecutar con filtro de nombre |	uv run pytest -k interest|
+
+---
+
+## 🧩 Día 7 — Mocking y Pruebas con `requests` en Pytest + UVs
+
+> 🎯 Objetivo: aprender a simular comportamientos externos (APIs, archivos, bases de datos)  
+> sin depender de servicios reales, usando **mocking** para mantener las pruebas rápidas, seguras y determinísticas.
+
+### 🔹 ¿Qué es el *Mocking*?
+El **mocking** (simulación) permite reemplazar dependencias externas por **objetos falsos**  
+que imitan su comportamiento esperado durante las pruebas.
+Se usa para probar la lógica del código sin depender de factores externos como:
+
+- 🔗 APIs externas que pueden fallar o ser lentas  
+- 💾 Archivos o bases de datos con acceso restringido  
+- 🌐 Conexiones HTTP no disponibles en el entorno de test  
+
+### ⚙️ Instalación del soporte para Mocking
+Ya que trabajamos con `uv`, instalaremos `pytest-mock` y `requests` así:
+
+```bash
+uv add pytest-mock requests
+```
+
+Esto permite usar la fixture mocker, incluida con pytest-mock, para simular objetos o funciones.
+
+🧠 Conclusión del Día 7
+|Concepto |	Qué Aprendiste|
+|-----------|-----------|
+|mocker.patch() | Reemplazar funciones o módulos externos|
+|return_value | 	Simular valores de retorno|
+|assert_called_with() | 	Verificar argumentos usados en la llamada|
+|Parametrización + Mock | 	Probar varios escenarios de API en una sola función|
+|Fixture de Mock | 	Reutilizar simulaciones en múltiples tests|
+
+### 🧩 Aprender a hacer mocking no solo ahorra tiempo, sino que también permite testear lo imposible: lo que aún no existe o no se puede conectar.
+
+---
