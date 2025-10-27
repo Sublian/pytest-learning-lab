@@ -283,3 +283,26 @@ Esto permite usar la fixture mocker, incluida con pytest-mock, para simular obje
 ### 🧩 Aprender a hacer mocking no solo ahorra tiempo, sino que también permite testear lo imposible: lo que aún no existe o no se puede conectar.
 
 ---
+
+## 🧩 Día 8 — Mocking avanzado y simulación de errores
+
+**Objetivo:** profundizar en el uso del *mocking* para manejar respuestas dinámicas, excepciones y efectos colaterales.
+
+### 🚀 Temas cubiertos
+- Uso de `side_effect` para simular errores y respuestas múltiples.
+- Pruebas con `pytest.raises` para validar excepciones.
+- Creación de *fixtures reutilizables* de mocks.
+- Validación de llamadas al sistema (`time.sleep`) sin ejecutar código real.
+
+### 📁 Archivos creados
+- `src/mailing/email_client.py`
+- `tests/test_email_client_advanced.py`
+
+### 🧠 Lecciones clave
+- `side_effect` permite que los mocks tengan comportamientos dinámicos.
+- Las *fixtures de mocks* ayudan a mantener los tests limpios y consistentes.
+- Podemos probar tiempos, errores y reintentos sin depender de servicios reales.
+
+> _“Un buen test no sólo verifica el éxito, también asegura que el sistema falla correctamente.”_
+
+---
