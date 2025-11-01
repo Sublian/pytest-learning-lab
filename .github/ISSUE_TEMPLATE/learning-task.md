@@ -3,8 +3,9 @@ name: "🎓 Learning Task"
 description: "Plantilla para tareas de aprendizaje y práctica"
 title: "🎓 [CONCEPT]: "
 labels: ["type:practice", "type:theory"]
-assignees: "@sublian"
+assignees: "@Sublian"
 about: "Learning issue template"
+projects: ["Sublian/2"]
 ---
 
 ## 🎯 Objetivo de Aprendizaje
