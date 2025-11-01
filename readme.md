@@ -306,3 +306,31 @@ Esto permite usar la fixture mocker, incluida con pytest-mock, para simular obje
 > _“Un buen test no sólo verifica el éxito, también asegura que el sistema falla correctamente.”_
 
 ---
+
+### 🧩 Día 9 — Reintentos Condicionales y Mocking de Respuestas HTTP
+
+**Issue:**  
+El cliente de correo no realizaba reintentos cuando la API devolvía errores HTTP (p. ej. 500). Solo reintentaba ante excepciones.
+
+**Objetivos:**  
+- Implementar reintentos también en caso de fallos HTTP.
+- Simular respuestas HTTP con `MagicMock` junto con distintos tipos de fallos HTTP y excepciones.
+- Implementar `side_effect` mixtos (fallos de red + errores 500 + éxito).  
+- Validar que los reintentos ocurren sin hacer llamadas reales a internet.
+- Aprender a usar `requests.Response` real dentro de mocks.  
+- Verificar correctamente la cantidad de reintentos.
+
+**Conceptos clave:**
+- `mock_post.side_effect` permite controlar el flujo completo de ejecución simulada.  
+- El método `enviar_con_reintento` ahora distingue entre respuestas exitosas (200) y errores.
+- `time.sleep` sigue siendo parcheado para medir la cantidad de reintentos sin demoras reales.
+- El éxito anticipado reduce el número real de llamadas a `sleep()` y `post()`.  
+- El mock debe aplicarse **donde se usa**, no donde se define.  
+- Puedes anidar mocks para probar desde el nivel de API hasta la capa HTTP.
+
+**Resultado esperado:**
+Todos los tests deben pasar, incluyendo los escenarios con:
+- Éxitos inmediatos.
+- Fallos intermitentes.
+- Errores HTTP simulados.
+- Escenarios complejos de error → retry → éxito

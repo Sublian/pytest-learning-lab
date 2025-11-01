@@ -9,15 +9,16 @@ class EmailClient:
     def __init__(self, delay: float = 0.0):
         self.delay = delay
 
-    def enviar_con_reintento(self, email: str, mensaje: str, reintentos: int = 2) -> bool:
+    def enviar_con_reintento(self, email: str, mensaje: str, reintentos: int = 3) -> bool:
         """Envía una notificación con posibilidad de reintentos."""
-        for intento in range(reintentos):
-            if self.delay:
-                time.sleep(self.delay)  # simulación de proceso
+        for intento in range(1,reintentos +1):
             try:
-                exito = enviar_notificacion(email, mensaje)
-                if exito:
+                resultado = enviar_notificacion(email, mensaje)
+                if resultado:
                     return True
             except Exception as e:
-                print(f"Intento {intento + 1}: fallo -> {e}")
+                print(f"[INTENTO {intento}] Error: {e}")
+
+            if intento < reintentos:
+                time.sleep(self.delay)
         return False
