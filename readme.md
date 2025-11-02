@@ -355,3 +355,21 @@ Aprender a usar fixtures de pytest para preparar entornos y objetos compartidos 
 - Facilita mantenimiento y escalabilidad de la suite de pruebas.
 
 ---
+
+## 🧪 Día 11 — Fixtures dinámicas y uso de autouse
+
+En este día aprendí a usar **fixtures dinámicas y automáticas** en Pytest.  
+Implementé un cliente de base de datos simulado con una fixture que cambia según el
+parámetro del test (`request.param`) y una fixture con `autouse=True` para iniciar y cerrar
+recursos de manera automática antes y después de cada prueba.
+
+🔍 **Conceptos clave:**
+- `request.param` para valores dinámicos.
+- `autouse=True` para ejecutar fixtures globales sin declararlas.
+- Encadenamiento de fixtures (`db_client`, `tabla_usuario`).
+- Control del ciclo de vida con `yield`.
+
+💡 Este día refuerza la comprensión del manejo de contexto y la limpieza de recursos,
+pilares para pruebas limpias y reproducibles.
+
+---
