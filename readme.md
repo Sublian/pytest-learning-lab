@@ -334,3 +334,24 @@ Todos los tests deben pasar, incluyendo los escenarios con:
 - Fallos intermitentes.
 - Errores HTTP simulados.
 - Escenarios complejos de error → retry → éxito
+
+---
+
+### 🧩 Día 10 — Fixtures Dinámicos y Setup Compartido
+
+**Objetivo:**  
+Aprender a usar fixtures de pytest para preparar entornos y objetos compartidos en múltiples tests.
+
+**Conceptos clave:**  
+- Las fixtures son funciones que inicializan datos o mocks comunes.  
+- Se pueden inyectar automáticamente mediante su nombre como parámetro.  
+- `conftest.py` es el punto central donde se definen las fixtures globales.  
+- `make_response` genera respuestas HTTP realistas.  
+- `mock_post` evita llamadas externas, garantizando aislamiento.  
+
+**Resultado esperado:**  
+- Tests más cortos, expresivos y reutilizables.  
+- Cero código duplicado entre tests.  
+- Facilita mantenimiento y escalabilidad de la suite de pruebas.
+
+---

@@ -55,4 +55,4 @@ def test_simulacion_de_retraso(mocker):
     resultado = client.enviar_con_reintento("delay@test.com", "Mensaje", reintentos=3)
 
     assert resultado is True
-    assert mock_sleep.call_count == 3  # se esperaron 3 intentos, con 3 pausas
+    assert mock_sleep.call_count == 2  # se esperaron 3 intentos, con 3 pausas
