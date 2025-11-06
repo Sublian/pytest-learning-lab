@@ -2,6 +2,8 @@
 import pytest
 import requests
 from calculator.math_ops import MathOperations
+import time
+import random
 
 @pytest.fixture(scope="module")
 def math_ops_module():
@@ -45,3 +47,33 @@ def make_response():
         resp._content = text.encode('utf-8')
         return resp
     return _factory
+
+
+@pytest.fixture(scope="session")
+def api_client():
+    print("\n🌐 Creando cliente API (una sola vez)")
+    return {"base_url": "https://fake.api.local"}
+
+
+@pytest.fixture(scope="session")
+def init_db():
+    """Simula una conexión a base de datos compartida por toda la sesión."""
+    print("\n[SETUP] Creando base de datos global...")
+    db = {"connected": True, "users": []}
+    yield db
+    print("\n[TEARDOWN] Cerrando base de datos global...")
+    db["connected"] = False
+
+
+@pytest.fixture(scope="function")
+def user_data(init_db):
+    """Crea un usuario temporal por test."""
+    user = {
+        "id": random.randint(1000, 9999),
+        "name": f"user_{int(time.time())}"
+    }
+    print(f"[SETUP] Creando usuario temporal: {user['name']}")
+    init_db["users"].append(user)
+    yield user
+    print(f"[TEARDOWN] Eliminando usuario: {user['name']}")
+    init_db["users"].remove(user)
