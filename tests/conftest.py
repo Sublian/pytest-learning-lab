@@ -77,3 +77,31 @@ def user_data(init_db):
     yield user
     print(f"[TEARDOWN] Eliminando usuario: {user['name']}")
     init_db["users"].remove(user)
+    
+@pytest.fixture
+def sample_user():
+    return {"name": "Luis", "role": "admin"}
+    
+
+
+# Las fixtures function se crean y destruyen por cada test.
+@pytest.fixture(scope="function")
+def db_conn_function():
+    print("\n[function] Conectando...")
+    yield {"status": "ok"}
+    print("\n[function] Cerrando conexión...")
+
+# Las fixtures module se crean una vez por archivo.
+@pytest.fixture(scope="module")
+def db_conn_module():
+    print("\n[module] Conectando...")
+    yield {"status": "ok"}
+    print("\n[module] Cerrando conexión...")
+
+# La fixture session se crea una sola vez para toda la ejecución.
+@pytest.fixture(scope="session")
+def db_conn_session():
+    print("\n[session] Conectando una sola vez...")
+    yield {"status": "ok"}
+    print("\n[session] Cerrando conexión global...")    
+    
