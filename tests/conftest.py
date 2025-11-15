@@ -105,3 +105,26 @@ def db_conn_session():
     yield {"status": "ok"}
     print("\n[session] Cerrando conexión global...")    
     
+
+@pytest.fixture
+def mock_api_response(mocker):
+    fake_post = mocker.patch("src.mailing.email_service.requests.post")
+    fake_post.return_value.status_code = 200
+    return fake_post
+
+@pytest.fixture(params=[200, 404, 500, Exception("error")])
+def mock_respuesta_api(mocker):
+    """Simula varias respuestas típicas para pruebas parametrizadas."""
+
+    fake = mocker.patch("src.mailing.email_service.requests.post")
+
+    # Respuestas variadas
+    respuestas = [
+        type("Resp", (), {"status_code": 200, "json": lambda: {"ok": True}})(),
+        type("Resp", (), {"status_code": 404})(),
+        type("Resp", (), {"status_code": 500})(),
+        Exception("error")
+    ]
+
+    fake.side_effect = respuestas
+    return fake
