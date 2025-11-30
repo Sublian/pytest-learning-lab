@@ -128,3 +128,14 @@ def mock_respuesta_api(mocker):
 
     fake.side_effect = respuestas
     return fake
+
+
+class FakeApiClient:
+    """Simula un cliente que siempre responde éxito."""
+    def enviar(self, payload):
+        return {"ok": True, "data": {"echo": payload}}
+
+@pytest.fixture
+def fake_api():
+    return FakeApiClient()
+
