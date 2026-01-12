@@ -139,3 +139,26 @@ class FakeApiClient:
 def fake_api():
     return FakeApiClient()
 
+@pytest.fixture
+def api_factory(mocker):
+    def _factory(response):
+        api = mocker.Mock()
+        api.enviar.return_value = response
+        return api
+    return _factory
+
+
+# Fixture para PaymentAPI falso
+class FakePaymentAPI:
+    def __init__(self, response):
+        self.response = response
+
+    def charge(self, amount):
+        return self.response
+
+
+@pytest.fixture
+def payment_api_factory():
+    def _factory(response):
+        return FakePaymentAPI(response)
+    return _factory
