@@ -1,21 +1,28 @@
 # 🧪 Pytest Learning Lab
 
-This repository documents my learning journey with **pytest**, automation, and testing best practices using Python.
+Este laboratorio documenta mi ruta de aprendizaje con **pytest**, enfocada en buenas prácticas de testing, automatización y diseño de pruebas mantenibles para backends en Python.  
+El objetivo es consolidar patrones que luego aplico en proyectos reales (APIs, servicios de correo, lógica financiera).
+
+---
 
 ## 🚀 Project Overview
-This lab includes:
-- Test-driven examples using `pytest`
-- Parametrization and fixtures
-- Exception handling and advanced test scenarios
-- Code profiling and optimization techniques
+
+En este lab trabajo sobre:
+
+- Tests dirigidos por comportamiento usando `pytest` (no solo “que pase verde”).
+- Parametrización y **fixtures** para reducir duplicación y mejorar cobertura.
+- Manejo de excepciones y escenarios avanzados (reintentos, errores HTTP, timeouts).
+- Técnicas de mocking para desacoplar el código de APIs externas, archivos y BD.
+- Integración con `uv` para entornos rápidos y reproducibles.
+- Preparación para CI/CD y reportes de cobertura (GitHub Actions en la siguiente fase).
 
 ## 📂 Structure
+
 ```bash
 pytest-uv-project/
-├── src/ # Core code
-├── tests/ # Unit and integration tests
-└── pyproject.toml # uv project configuration
-
+├── src/          # Código de ejemplo (cálculos, cliente HTTP, envío de correos, etc.)
+├── tests/        # Unit & integration tests con parametrización, fixtures y mocks
+└── pyproject.toml # Configuración del proyecto y pytest (markers, opciones)
 ```
 
 ## 🧰 Tools
@@ -30,17 +37,29 @@ pytest-uv-project/
 ### ⚙️ Inicialización del entorno con UV
 
 ```bash
-# Activar el entorno virtual
+#  Crear / activar entorno virtual
 uv venv
 
-# Instalar pytest y plugins
+# Instalar pytest y plugins principales
 uv pip install pytest pytest-cov pytest-mock
 ```
-## Ejecutar los tests completos:
->uv run pytest -v
 
-## Ejecutar los tests por marcador:
->uv run pytest -m error_handling -v
+## Ejecutar los tests completos:
+
+```
+# Todos los tests
+uv run pytest -v
+
+# Tests filtrados por marker
+uv run pytest -m error_handling -v
+
+# Tests de un archivo concreto
+uv run pytest tests/test_math_ops.py
+
+# Test individual
+uv run pytest tests/test_math_ops.py::test_sumatoria_basica
+```
+
 ---
 
 ### 🧭 Status
@@ -75,8 +94,11 @@ def test_usuario_tiene_rol(usuario_base):
 💡 **Nota:** Las fixtures ayudan a mantener las pruebas aisladas y predecibles.
 
 ✅ **Buenas prácticas**
+
 - Usa nombres descriptivos para tus fixtures.
+
 - Evita modificar los datos compartidos dentro del test.
+
 - Reutiliza fixtures solo cuando su configuración sea estable.
 
 ---
@@ -354,3 +376,26 @@ Aprender a usar fixtures de pytest para preparar entornos y objetos compartidos 
 - Cero código duplicado entre tests.  
 - Facilita mantenimiento y escalabilidad de la suite de pruebas.
 
+---
+
+## 🧭 Pytest + UV — Mini guía visual
+
+Objetivo |	Comando
+|-|-|
+Ejecutar todos los tests	| uv run pytest
+Ejecutar un archivo	| uv run pytest tests/test_math_ops.py
+Ejecutar una función	| uv run pytest tests/test_math_ops.py::test_sumatoria_basica
+Ejecutar por marker	| uv run pytest -m api
+Varios markers	|uv run pytest -m "api or error_handling"
+Filtrar por nombre	|uv run pytest -k interest
+
+
+
+## 📅 Roadmap del lab
+
+- Añadir integración CI con GitHub Actions (ejecución en cada push/PR).
+
+- Publicar reportes de cobertura (HTML + badge).
+
+- Extender ejemplos a contextos Django / FastAPI y Celery.
+- 
