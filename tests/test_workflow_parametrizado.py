@@ -11,7 +11,7 @@ from src.workflow.notificador import Notificador
         (True,  {"ok": False, "error": "timeout"}, {"email_ok": True, "api_ok": False, "api_error": "timeout"}),
     ]
 )
-def test_procesar_evento_parametrizado(
+def test_should_process_event_and_return_combined_result(
     mocker,
     api_factory,
     email_ok,

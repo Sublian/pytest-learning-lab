@@ -3,6 +3,10 @@
 import pytest
 from src.payments.payment_service import PaymentService
 
+# ---------------------------
+# CONTRATO / TRADUCCIÓN API
+# ---------------------------
+
 @pytest.mark.parametrize(
     "api_response, esperado",
     [
@@ -18,7 +22,7 @@ from src.payments.payment_service import PaymentService
         ({"ok": False, "error": "desconocido"}, {"success": False, "error": "desconocido"}),
     ]
 )
-def test_procesar_pago_parametrizado(
+def test_should_translate_api_response_into_payment_result(
     payment_api_factory,
     api_response,
     esperado
@@ -31,6 +35,10 @@ def test_procesar_pago_parametrizado(
     assert r == esperado
 
 
+# ---------------------------
+# CASOS DE ÉXITO
+# ---------------------------
+
 # Dia 19 
 # Refactorizacion conceptual
 
@@ -42,7 +50,7 @@ def test_procesar_pago_parametrizado(
         {"ok": True, "extra": "data"},
     ]
 )
-def test_pago_exitoso(payment_api_factory, api_response):
+def test_should_return_success_when_api_response_is_ok(payment_api_factory, api_response):
     api = payment_api_factory(api_response)
     service = PaymentService(api)
 
@@ -50,6 +58,9 @@ def test_pago_exitoso(payment_api_factory, api_response):
 
     assert r == {"success": True, "error": None}
 
+# ---------------------------
+# ERRORES DE NEGOCIO
+# ---------------------------
 # Test 2 - Errores de negocio
 @pytest.mark.parametrize(
     "error",
@@ -60,7 +71,7 @@ def test_pago_exitoso(payment_api_factory, api_response):
         "fecha de vencimiento no puede ser igual a fecha de creacion",
     ]
 )
-def test_pago_error_negocio(payment_api_factory, error):
+def test_should_return_business_error_when_api_returns_known_error(payment_api_factory, error):
     api = payment_api_factory({"ok": False, "error": error})
     service = PaymentService(api)
 
@@ -68,12 +79,16 @@ def test_pago_error_negocio(payment_api_factory, error):
 
     assert r == {"success": False, "error": error}
 
+
+# ---------------------------
+# ERRORES TÉCNICOS
+# ---------------------------
 # Test 3 - errores tecnicos
 @pytest.mark.parametrize(
     "error",
     ["timeout", "desconocido"]
 )
-def test_pago_error_tecnico(payment_api_factory, error):
+def test_should_return_failure_when_api_returns_technical_error(payment_api_factory, error):
     api = payment_api_factory({"ok": False, "error": error})
     service = PaymentService(api)
 
